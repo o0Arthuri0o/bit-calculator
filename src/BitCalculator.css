@@ -1,0 +1,518 @@
+/* Стили для битового калькулятора - адаптированы из bitCalculator.html */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.bit-calculator-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+.bit-calculator-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.bit-calculator-title {
+    color: #22d3ee;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-subtitle {
+    color: #94a3b8;
+    font-size: 14px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-card {
+    background: #1e293b;
+    border: 1px solid #475569;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+.bit-calculator-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .bit-calculator-card-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .bit-calculator-card-header > div:last-child {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.bit-calculator-card-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #f8fafc;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-card-description {
+    font-size: 14px;
+    color: #94a3b8;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-carry-flag {
+    background: #334155;
+    border: 1px solid #475569;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #94a3b8;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-carry-flag strong {
+    color: #22d3ee;
+}
+
+.bit-calculator-input-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+    .bit-calculator-input-section {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.bit-calculator-input-group {
+    background: #334155;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #475569;
+}
+
+.bit-calculator-input-group label {
+    display: block;
+    font-weight: bold;
+    color: #f8fafc;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-input-hint {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-input-hint.error {
+    color: #ef4444;
+}
+
+.bit-calculator-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #475569;
+    flex-wrap: wrap;
+}
+
+.bit-calculator-tab {
+    padding: 12px 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    color: #94a3b8;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-tab:hover {
+    color: #f8fafc;
+}
+
+.bit-calculator-tab.active {
+    color: #22d3ee;
+    border-bottom-color: #22d3ee;
+}
+
+.bit-calculator-tab-content {
+    display: none;
+}
+
+.bit-calculator-tab-content.active {
+    display: block;
+}
+
+.bit-calculator-operations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.bit-calculator-op-button {
+    padding: 15px 20px;
+    border: 1px solid #475569;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #334155;
+    color: #f8fafc;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-op-button:hover {
+    background: #475569;
+    border-color: #22d3ee;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(34, 211, 238, 0.2);
+}
+
+.bit-calculator-hint {
+    background: #334155;
+    border-left: 4px solid #22d3ee;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #94a3b8;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-examples {
+    background: rgba(34, 211, 238, 0.1);
+    border-left: 4px solid #22d3ee;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    border: 1px solid rgba(34, 211, 238, 0.2);
+}
+
+.bit-calculator-examples h3 {
+    color: #22d3ee;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-examples ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.bit-calculator-examples li {
+    padding: 5px 0;
+    color: #94a3b8;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.bit-calculator-examples li strong {
+    color: #22d3ee;
+    font-weight: bold;
+}
+
+.bit-calculator-result-section {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: #f8fafc;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #475569;
+}
+
+.bit-calculator-result-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .bit-calculator-result-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.bit-calculator-result-label {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-result-value {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+    margin-bottom: 15px;
+    color: #22d3ee;
+}
+
+.bit-calculator-result-representations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.bit-calculator-repr-box {
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.bit-calculator-repr-title {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-bottom: 5px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-repr-value {
+    font-size: 18px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+    word-break: break-all;
+    color: #f8fafc;
+}
+
+.bit-calculator-visualization {
+    background: #334155;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: 1px solid #475569;
+}
+
+.bit-calculator-vis-title {
+    font-weight: bold;
+    color: #f8fafc;
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-bit-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 8px 0;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    flex-wrap: wrap;
+}
+
+.bit-calculator-bit {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 12px;
+    transition: all 0.15s;
+}
+
+.bit-calculator-bit.zero {
+    background: #334155;
+    color: #94a3b8;
+    border: 1px solid #475569;
+}
+
+.bit-calculator-bit.one {
+    background: #22d3ee;
+    color: #09090b;
+    border: 1px solid #22d3ee;
+    box-shadow: 0 0 8px rgba(34, 211, 238, 0.3);
+}
+
+.bit-calculator-bit-label {
+    margin: 10px 0;
+    text-align: center;
+    font-weight: bold;
+    color: #94a3b8;
+    font-size: 14px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-operator-symbol {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #22d3ee;
+    margin: 5px 0;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-shift-arrow {
+    text-align: center;
+    font-size: 24px;
+    color: #22d3ee;
+    margin: 10px 0;
+}
+
+.bit-calculator-carry-flag-box {
+    background: rgba(34, 211, 238, 0.1);
+    border: 1px solid #22d3ee;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 15px 0;
+    text-align: center;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-carry-flag-box strong {
+    color: #22d3ee;
+}
+
+.bit-calculator-flags-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.bit-calculator-flag-item {
+    border: 1px solid #475569;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+    transition: all 0.15s;
+}
+
+.bit-calculator-flag-item.active {
+    border-color: #22d3ee;
+    background: rgba(34, 211, 238, 0.1);
+    color: #22d3ee;
+    box-shadow: 0 0 8px rgba(34, 211, 238, 0.2);
+}
+
+.bit-calculator-flag-item.inactive {
+    background: #334155;
+    color: #94a3b8;
+}
+
+.bit-calculator-history {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.bit-calculator-history-item {
+    background: #334155;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-left: 4px solid #22d3ee;
+    border: 1px solid #475569;
+    transition: all 0.15s;
+}
+
+.bit-calculator-history-item:hover {
+    background: #475569;
+    border-color: #22d3ee;
+}
+
+.bit-calculator-history-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.bit-calculator-history-op {
+    font-weight: bold;
+    color: #22d3ee;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-history-time {
+    color: #94a3b8;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-history-input {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+    margin-bottom: 5px;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.bit-calculator-history-result {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+    color: #22d3ee;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.bit-calculator-history-flags {
+    margin-top: 8px;
+    font-size: 11px;
+    color: #94a3b8;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-empty-state {
+    text-align: center;
+    color: #94a3b8;
+    padding: 40px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-base-selector {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .bit-calculator-input-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .bit-calculator-tabs {
+        font-size: 14px;
+    }
+    
+    .bit-calculator-tab {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .bit-calculator-operations {
+        grid-template-columns: 1fr;
+    }
+}
+

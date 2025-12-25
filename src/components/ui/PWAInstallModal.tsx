@@ -1,28 +1,39 @@
 import { usePWAInstall } from "@/hooks/usePWAInstall";
-import { Button } from "./button";
+import "../../BitCalculator.css";
 
 export function PWAInstallModal() {
-  const { canInstall, install } = usePWAInstall();
+  const { canInstall, install, dismiss } = usePWAInstall();
 
   if (!canInstall) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-      <div className="w-[320px] rounded-lg border border-border bg-card p-5 shadow-2xl">
-        <div className="space-y-1 pb-4">
-          <h2 className="text-lg font-mono font-semibold text-foreground">Установить приложение?</h2>
-          <p className="text-sm font-mono text-muted-foreground">
-            Битовый калькулятор можно установить как PWA и работать оффлайн.
-          </p>
-        </div>
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Закрываем только при клике на оверлей, не на модальное окно
+    if (e.target === e.currentTarget) {
+      dismiss();
+    }
+  };
 
-        <div className="flex gap-2">
-          <Button className="w-full font-mono" onClick={install}>
+  return (
+    <div className="bit-calculator-modal-overlay" onClick={handleOverlayClick}>
+      <div className="bit-calculator-modal" onClick={(e) => e.stopPropagation()}>
+        <h2 className="bit-calculator-modal-title">Установить приложение?</h2>
+        <p className="bit-calculator-modal-description">
+          Битовый калькулятор можно установить как PWA и работать оффлайн.
+        </p>
+
+        <div className="bit-calculator-modal-buttons">
+          <button 
+            className="bit-calculator-modal-button bit-calculator-modal-button-primary" 
+            onClick={install}
+          >
             Установить
-          </Button>
-          <Button className="w-full font-mono" variant="outline" onClick={() => location.reload()}>
+          </button>
+          <button 
+            className="bit-calculator-modal-button" 
+            onClick={dismiss}
+          >
             Позже
-          </Button>
+          </button>
         </div>
       </div>
     </div>

@@ -516,3 +516,82 @@
     }
 }
 
+/* Стили для модального окна PWA */
+.bit-calculator-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(9, 9, 11, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.bit-calculator-modal {
+    background: #1e293b;
+    border: 1px solid #475569;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    max-width: 400px;
+    width: 90%;
+}
+
+.bit-calculator-modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #f8fafc;
+    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-modal-description {
+    font-size: 14px;
+    color: #94a3b8;
+    margin-bottom: 20px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+    line-height: 1.6;
+}
+
+.bit-calculator-modal-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.bit-calculator-modal-button {
+    flex: 1;
+    padding: 12px 20px;
+    border: 1px solid #475569;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #334155;
+    color: #f8fafc;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.bit-calculator-modal-button:hover {
+    background: #475569;
+    border-color: #22d3ee;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(34, 211, 238, 0.2);
+}
+
+.bit-calculator-modal-button-primary {
+    background: #22d3ee;
+    color: #09090b;
+    border-color: #22d3ee;
+}
+
+.bit-calculator-modal-button-primary:hover {
+    background: #06b6d4;
+    border-color: #06b6d4;
+    box-shadow: 0 5px 15px rgba(34, 211, 238, 0.4);
+}
+
